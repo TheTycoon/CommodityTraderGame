@@ -5,7 +5,7 @@ class City:
     def __init__(self, name, inventory_size):
         self.name = name
         self.inventory_size = inventory_size
-        self.inventory = Inventory.Inventory(3)
+        self.inventory = Inventory.Inventory(inventory_size)
         self.prices = dict()
 
     def add_resource(self, resource):
@@ -14,19 +14,11 @@ class City:
     def set_prices(self):
         pass
 
-        # self.cheapResourceName = cheap
-        # self.expensiveResourceName = expensive
-        # self.wildResourceName = wild
-
-    # def print_resources(self):
-    #     print("City: %s" % self.name)
-    #     print("%s: " % self.cheapResourceName)
-    #     print("%s: " % self.expensiveResourceName)
-    #     print("%s: " % self.wildResourceName)
+    def print_resources(self):
+        pass
 
 
-# city1 = City("New Startland", "Stone", "Wood", "Wheat")
-# city1.print_resources()
+
 
 
 
