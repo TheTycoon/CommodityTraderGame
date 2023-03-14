@@ -2,18 +2,18 @@ import random
 
 
 class Resource:
-    def __init__(self, name):
-        self.Name = "Stone"
+    def __init__(self, name, sell_min, sell_max, buy_min, buy_max):
+        self.name = name
 
         # This is the value the city will sell the resource for
-        self.sell_price = 5
-        self.sell_price_max = 10
-        self.sell_price_min = 5
+        self.sell_price = (sell_max + sell_min) / 2
+        self.sell_price_max = sell_max
+        self.sell_price_min = sell_min
 
         # This is the value the city will buy the resource for
-        self.buy_price = 1
-        self.buy_price_max = 5
-        self.buy_price_min = 1
+        self.buy_price = (buy_max + buy_min) / 2
+        self.buy_price_max = buy_max
+        self.buy_price_min = buy_min
 
     def new_day(self):
         # Choose a random number to determine if the price goes up, down or stays the same
