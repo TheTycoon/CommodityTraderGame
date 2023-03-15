@@ -23,23 +23,11 @@ class Inventory:
                     self.inventory[x] = item
                     break
         else:
-            print("Inventory Full!")
+            print("DEBUG: INVENTORY FULL!")
 
     def remove_item(self, item):
         for x in range(self.size):
             if self.inventory[x] == item:
                 self.inventory[x] = self.empty
                 break
-
-
-
-
-# PLANNING
-
-
-#print(inventory.count("EMPTY"))
-
-# Restrict Inventory Size
-#while len(inventory) > maxInventory:
-    #inventory.pop()
 

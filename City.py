@@ -16,9 +16,6 @@ class City:
     def add_resource_buy(self, resource):
         self.inventory_buying.add_item(resource)
 
-    def set_prices(self):
-        pass
-
     # will this even be necessary? just do the sell and buy functions instead
     def print_resources(self):
         print("===========================")
