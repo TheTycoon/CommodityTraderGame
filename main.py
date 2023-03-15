@@ -5,8 +5,9 @@
 import City
 import Resource
 
-city1 = City.City("New Startland", 3)
+city1 = City.City("New Startland", 3, 5)
 
+# Think of a good way to initialize all resources at the start of running the program
 wheat = Resource.Resource("Wheat", 5, 20, 1, 5)
 stone = Resource.Resource("Stone", 5, 20, 1, 5)
 wood = Resource.Resource("Wood", 5, 20, 1, 5)

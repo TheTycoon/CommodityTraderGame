@@ -32,3 +32,12 @@ class Resource:
             self.sell_price = self.sell_price_min
         elif self.sell_price >= self.sell_price_max:
             self.sell_price = self.sell_price_max
+
+
+# Think of a good way to initialize all resources at the start of running the program
+# I am not using this code yet
+def initialize_resources():
+    wheat = Resource("Wheat", 5, 20, 1, 5)
+    stone = Resource("Stone", 5, 20, 1, 5)
+    wood = Resource("Wood", 5, 20, 1, 5)
+    iron = Resource("Iron", 5, 20, 1, 5)
