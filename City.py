@@ -24,18 +24,24 @@ class City:
         print()
 
     def print_inventory_sell(self):
+        count = 1
         for resource in self.inventory_selling.inventory:
-            print("{}: {} Gold".format(resource.name, resource.sell_price))
+            print("{}. {}: {} Gold".format(count, resource.name, resource.sell_price))
+            count += 1
 
     def print_inventory_buy(self):
+        count = 1
         for resource in self.inventory_buying.inventory:
-            print("{}: {} Gold".format(resource.name, resource.buy_price))
+            print("{}. {}: {} Gold".format(count, resource.name, resource.buy_price))
+            count += 1
 
     def new_day(self):
         for resource in self.inventory_selling.inventory:
             resource.new_day_sell()
         for resource in self.inventory_buying.inventory:
             resource.new_day_buy()
+
+
 
 
 

@@ -5,6 +5,10 @@
 import City
 import Resource
 import Player
+import Engine
+import pygame
+import settings
+import graphics
 
 player = Player.Player()
 city1 = City.City("New Startland", 3, 3)
@@ -27,20 +31,83 @@ city1.add_resource_buy(rice)
 city1.add_resource_buy(iron)
 city1.add_resource_buy(cotton)
 
-# Testing buying items as player
-player.buy_item(city1.inventory_selling.inventory[0])
-player.buy_item(city1.inventory_selling.inventory[1])
-player.buy_item(city1.inventory_selling.inventory[0])
-player.buy_item(city1.inventory_selling.inventory[2])
-player.buy_item(city1.inventory_selling.inventory[0])
+#   PYGAME STUFF BELOW
+pygame.font.init()
 
-# Simulate a number of days to change prices
-city1.new_day()
+# Set Up A Window
+window = pygame.display.set_mode((settings.WIDTH, settings.HEIGHT))
+pygame.display.set_caption(settings.TITLE)
 
-# Testing selling items as player
-player.sell_item(0, city1)
+# Set Background Color
+window.fill(settings.SILVER)
+
+# MAIN LOOP
+running = True
+while running:
+
+    # EVENT LOOP
+    for event in pygame.event.get():
+
+        # Close Program on Quit
+        if event.type == pygame.QUIT:
+            running = False
+
+        # Check for Keys Pressed
+        if event.type == pygame.KEYDOWN:
+
+            # Press 1
+            if event.key == pygame.K_1:
+                pass
+
+            # Press 2
+            if event.key == pygame.K_2:
+                pass
+
+            # Press 3
+            if event.key == pygame.K_3:
+                pass
+
+            # Press space
+            if event.key == pygame.K_SPACE:
+                pass
+
+    # DRAW STUFF
+
+    # Draw White Rectangle for Current City and Player Money
+    pygame.draw.rect(window, settings.WHITE, pygame.Rect(0, 0, settings.WIDTH, 100))
+
+    # Draw Current City and Player Money
+    graphics.draw_text(window, "Current City: " + city1.name, 26, settings.BLACK, 0, 0, False)
+    graphics.draw_text(window, "Player Money: " + str(player.money), 26, settings.BLACK, 0, 30, False)
+    #graphics.draw_text(window, "Press 3 to Guess At the Same Time", 26, settings.BLACK, settings.WIDTH / 2, 60, True)
+
+    # Draw Rectangle
+    # pygame.draw.rect(window, color, pygame.Rect(x pos, y pos, width, height)
+    # pygame.draw.rect(window, settings.BLUE, pygame.Rect(0, 0, 100, 100))
+
+    # DISPLAY FRAME
+    pygame.display.update()
 
 
-player.print_inventory()
-print(player.money)
+
+#Engine.main_menu(city1)
+
+
+
+# # Testing buying items as player
+# player.buy_item(city1.inventory_selling.inventory[0])
+# player.buy_item(city1.inventory_selling.inventory[1])
+# player.buy_item(city1.inventory_selling.inventory[0])
+# player.buy_item(city1.inventory_selling.inventory[2])
+# player.buy_item(city1.inventory_selling.inventory[0])
+#
+# # Simulate a number of days to change prices
+# city1.new_day()
+#
+# # Testing selling items as player
+# player.sell_item(0, city1)
+#
+#
+# player.print_inventory()
+# print(player.money)
 
