@@ -31,6 +31,19 @@ city1.add_resource_buy(rice)
 city1.add_resource_buy(iron)
 city1.add_resource_buy(cotton)
 
+# Testing buying items as player
+player.buy_item(city1.inventory_selling.inventory[0])
+player.buy_item(city1.inventory_selling.inventory[1])
+player.buy_item(city1.inventory_selling.inventory[0])
+player.buy_item(city1.inventory_selling.inventory[2])
+player.buy_item(city1.inventory_selling.inventory[0])
+
+# Simulate a number of days to change prices
+city1.new_day()
+
+# Testing selling items as player
+player.sell_item(0, city1)
+
 #   PYGAME STUFF BELOW
 pygame.font.init()
 
@@ -39,7 +52,7 @@ window = pygame.display.set_mode((settings.WIDTH, settings.HEIGHT))
 pygame.display.set_caption(settings.TITLE)
 
 # Set Background Color
-window.fill(settings.SILVER)
+window.fill(settings.WHITE)
 
 # MAIN LOOP
 running = True
@@ -74,14 +87,18 @@ while running:
     # DRAW STUFF
 
     # Draw White Rectangle for Current City and Player Money
-    pygame.draw.rect(window, settings.WHITE, pygame.Rect(0, 0, settings.WIDTH, 100))
+    pygame.draw.rect(window, settings.SILVER, pygame.Rect(0, 0, settings.WIDTH, 100))
 
     # Draw Current City and Player Money
     graphics.draw_text(window, "Current City: " + city1.name, 26, settings.BLACK, 0, 0, False)
     graphics.draw_text(window, "Player Money: " + str(player.money), 26, settings.BLACK, 0, 30, False)
-    #graphics.draw_text(window, "Press 3 to Guess At the Same Time", 26, settings.BLACK, settings.WIDTH / 2, 60, True)
 
-    # Draw Rectangle
+    # Print Player Inventory
+    pygame.draw.rect(window, settings.BLACK, pygame.Rect(0, 100, settings.WIDTH / 2, 200))
+    graphics.draw_text(window, "Player Inventory", 26, settings.WHITE, 0, 100, False)
+    player.draw_inventory(window)
+
+    # Draw Rectangle Example
     # pygame.draw.rect(window, color, pygame.Rect(x pos, y pos, width, height)
     # pygame.draw.rect(window, settings.BLUE, pygame.Rect(0, 0, 100, 100))
 
@@ -94,18 +111,7 @@ while running:
 
 
 
-# # Testing buying items as player
-# player.buy_item(city1.inventory_selling.inventory[0])
-# player.buy_item(city1.inventory_selling.inventory[1])
-# player.buy_item(city1.inventory_selling.inventory[0])
-# player.buy_item(city1.inventory_selling.inventory[2])
-# player.buy_item(city1.inventory_selling.inventory[0])
-#
-# # Simulate a number of days to change prices
-# city1.new_day()
-#
-# # Testing selling items as player
-# player.sell_item(0, city1)
+
 #
 #
 # player.print_inventory()

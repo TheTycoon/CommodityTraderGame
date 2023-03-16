@@ -1,5 +1,7 @@
 import Inventory
 import Resource
+import graphics
+import settings
 
 
 class Player:
@@ -24,4 +26,11 @@ class Player:
         count = 1
         for resource in self.inventory.inventory:
             print("{}. {}".format(count, resource.name))
+            count += 1
+
+    def draw_inventory(self, window):
+        count = 1
+        for resource in self.inventory.inventory:
+            #print("{}. {}".format(count, resource.name))
+            graphics.draw_text(window, str(count) + ". " + resource.name, 26, settings.WHITE, 0, 100 + 30 * count, False)
             count += 1
