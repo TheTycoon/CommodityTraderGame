@@ -54,6 +54,17 @@ pygame.display.set_caption(settings.TITLE)
 # Set Background Color
 window.fill(settings.WHITE)
 
+# Get the Mouse
+mouse = pygame.mouse
+
+
+# Create a Test Button
+def test_function():
+    print("The button is clicked.")
+
+
+test_button = graphics.Button(settings.WIDTH / 2, settings.HEIGHT / 2, 100, 100, test_function)
+
 # MAIN LOOP
 running = True
 while running:
@@ -84,7 +95,11 @@ while running:
             if event.key == pygame.K_SPACE:
                 pass
 
-    # DRAW STUFF
+        # Check for Mouse Click FIX THIS
+        # if event.type == pygame.MOUSEBUTTONUP(0):
+        #     pass
+
+    # DRAW EVERYTHING TO THE SCREEN FOR 1 FRAME
 
     # Draw White Rectangle for Current City and Player Money
     pygame.draw.rect(window, settings.SILVER, pygame.Rect(0, 0, settings.WIDTH, 100))
@@ -97,6 +112,10 @@ while running:
     pygame.draw.rect(window, settings.BLACK, pygame.Rect(0, 100, settings.WIDTH / 2, 200))
     graphics.draw_text(window, "Player Inventory", 26, settings.WHITE, 0, 100, False)
     player.draw_inventory(window)
+
+    # Draw Test Button
+    test_button.is_hovering(mouse)
+    test_button.draw(window)
 
     # Draw Rectangle Example
     # pygame.draw.rect(window, color, pygame.Rect(x pos, y pos, width, height)
