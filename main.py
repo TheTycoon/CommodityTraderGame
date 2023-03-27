@@ -63,7 +63,8 @@ def test_function():
     print("The button is clicked.")
 
 
-test_button = graphics.Button(settings.WIDTH / 2, settings.HEIGHT / 2, 100, 100, test_function)
+test_button = graphics.Button((settings.WIDTH / 2, settings.HEIGHT / 2, 100, 100), settings.BLUE, test_function,
+                              text="Test", hover_color=settings.RED)
 
 # MAIN LOOP
 running = True
@@ -71,6 +72,8 @@ while running:
 
     # EVENT LOOP
     for event in pygame.event.get():
+
+        test_button.check_event(event)
 
         # Close Program on Quit
         if event.type == pygame.QUIT:
@@ -114,8 +117,8 @@ while running:
     player.draw_inventory(window)
 
     # Draw Test Button
-    test_button.is_hovering(mouse)
-    test_button.draw(window)
+    test_button.check_hover()
+    test_button.update(window)
 
     # Draw Rectangle Example
     # pygame.draw.rect(window, color, pygame.Rect(x pos, y pos, width, height)

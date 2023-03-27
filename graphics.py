@@ -28,22 +28,20 @@ class Button(object):
 
     def process_kwargs(self, kwargs):
         """Various optional customization you can change by passing kwargs."""
-        settings = {"text": None,
-                    "font": pygame.font.Font(None, 16),
-                    "call_on_release": True,
+        options = {"text": None,
+                   "font": pygame.font.Font(None, 16),
+                   "call_on_release": True,
                     "hover_color": None,
                     "clicked_color": None,
                     "font_color": pygame.Color("white"),
                     "hover_font_color": None,
-                    "clicked_font_color": None,
-                    "click_sound": None,
-                    "hover_sound": None}
+                    "clicked_font_color": None}
         for kwarg in kwargs:
-            if kwarg in settings:
-                settings[kwarg] = kwargs[kwarg]
+            if kwarg in options:
+                options[kwarg] = kwargs[kwarg]
             else:
                 raise AttributeError("Button has no keyword: {}".format(kwarg))
-        self.__dict__.update(settings)
+        self.__dict__.update(options)
 
     def render_text(self):
         """Pre render the button text."""
@@ -69,7 +67,7 @@ class Button(object):
             if not self.call_on_release:
                 self.function()
 
-    def on_release(self,event):
+    def on_release(self, event):
         if self.clicked and self.call_on_release:
             self.function()
         self.clicked = False
@@ -78,8 +76,6 @@ class Button(object):
         if self.rect.collidepoint(pygame.mouse.get_pos()):
             if not self.hovered:
                 self.hovered = True
-                if self.hover_sound:
-                    self.hover_sound.play()
         else:
             self.hovered = False
 
