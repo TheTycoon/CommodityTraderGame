@@ -41,6 +41,11 @@ class City:
         for resource in self.inventory_buying.inventory:
             resource.new_day_buy()
 
+    def test_function(self, x):
+        print("The button is clicked. %s" % x)
+        #player.buy_item(city1.inventory_selling.inventory[0])
+        #print("Wheat purchased for %s" % city1.inventory_selling.inventory[0].sell_price)
+
 
 
 

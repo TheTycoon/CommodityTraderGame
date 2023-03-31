@@ -6,11 +6,13 @@ import City
 import Resource
 import Player
 import Engine
-import pygame
-import settings
-import graphics
+
 
 player = Player.Player()
+
+engine = Engine.Engine()
+engine.main_loop()
+
 city1 = City.City("New Startland", 3, 3)
 
 # Think of a good way to initialize all resources at the start of running the program
@@ -32,110 +34,10 @@ city1.add_resource_buy(iron)
 city1.add_resource_buy(cotton)
 
 # Testing buying items as player
-player.buy_item(city1.inventory_selling.inventory[0])
-player.buy_item(city1.inventory_selling.inventory[1])
-player.buy_item(city1.inventory_selling.inventory[0])
-player.buy_item(city1.inventory_selling.inventory[2])
-player.buy_item(city1.inventory_selling.inventory[0])
+# player.buy_item(city1.inventory_selling.inventory[0])
+# player.buy_item(city1.inventory_selling.inventory[1])
+# player.buy_item(city1.inventory_selling.inventory[0])
+# player.buy_item(city1.inventory_selling.inventory[2])
+# player.buy_item(city1.inventory_selling.inventory[0])
 
-# Simulate a number of days to change prices
-city1.new_day()
-
-# Testing selling items as player
-player.sell_item(0, city1)
-
-#   PYGAME STUFF BELOW
-pygame.font.init()
-
-# Set Up A Window
-window = pygame.display.set_mode((settings.WIDTH, settings.HEIGHT))
-pygame.display.set_caption(settings.TITLE)
-
-# Set Background Color
-window.fill(settings.WHITE)
-
-# Get the Mouse
-mouse = pygame.mouse
-
-
-# Create a Test Button
-def test_function():
-    print("The button is clicked.")
-
-
-test_button = graphics.Button((settings.WIDTH / 2, settings.HEIGHT / 2, 100, 100), settings.BLUE, test_function,
-                              text="Test", hover_color=settings.RED)
-
-# MAIN LOOP
-running = True
-while running:
-
-    # EVENT LOOP
-    for event in pygame.event.get():
-
-        test_button.check_event(event)
-
-        # Close Program on Quit
-        if event.type == pygame.QUIT:
-            running = False
-
-        # Check for Keys Pressed
-        if event.type == pygame.KEYDOWN:
-
-            # Press 1
-            if event.key == pygame.K_1:
-                pass
-
-            # Press 2
-            if event.key == pygame.K_2:
-                pass
-
-            # Press 3
-            if event.key == pygame.K_3:
-                pass
-
-            # Press space
-            if event.key == pygame.K_SPACE:
-                pass
-
-        # Check for Mouse Click FIX THIS
-        # if event.type == pygame.MOUSEBUTTONUP(0):
-        #     pass
-
-    # DRAW EVERYTHING TO THE SCREEN FOR 1 FRAME
-
-    # Draw White Rectangle for Current City and Player Money
-    pygame.draw.rect(window, settings.SILVER, pygame.Rect(0, 0, settings.WIDTH, 100))
-
-    # Draw Current City and Player Money
-    graphics.draw_text(window, "Current City: " + city1.name, 26, settings.BLACK, 0, 0, False)
-    graphics.draw_text(window, "Player Money: " + str(player.money), 26, settings.BLACK, 0, 30, False)
-
-    # Print Player Inventory
-    pygame.draw.rect(window, settings.BLACK, pygame.Rect(0, 100, settings.WIDTH / 2, 200))
-    graphics.draw_text(window, "Player Inventory", 26, settings.WHITE, 0, 100, False)
-    player.draw_inventory(window)
-
-    # Draw Test Button
-    test_button.check_hover()
-    test_button.update(window)
-
-    # Draw Rectangle Example
-    # pygame.draw.rect(window, color, pygame.Rect(x pos, y pos, width, height)
-    # pygame.draw.rect(window, settings.BLUE, pygame.Rect(0, 0, 100, 100))
-
-    # DISPLAY FRAME
-    pygame.display.update()
-
-
-
-#Engine.main_menu(city1)
-
-
-
-
-#
-#
-# player.print_inventory()
-# print(player.money)
 

@@ -18,7 +18,7 @@ PINK = (255, 105, 180)
 FONT = pygame.font.match_font('courier')
 
 # Define Basic Window Properties
-WIDTH = 1200
+WIDTH = 800
 HEIGHT = 600
 FPS = 60
 TITLE = "Commodity Trader Game"

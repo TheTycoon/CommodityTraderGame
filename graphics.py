@@ -33,7 +33,7 @@ class Button(object):
                    "call_on_release": True,
                     "hover_color": None,
                     "clicked_color": None,
-                    "font_color": pygame.Color("white"),
+                    "font_color": settings.WHITE,
                     "hover_font_color": None,
                     "clicked_font_color": None}
         for kwarg in kwargs:
