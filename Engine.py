@@ -28,7 +28,8 @@ class Engine:
 
         self.start_button = graphics.Button((settings.WIDTH / 2 - self.button_width / 2,
                                              settings.HEIGHT / 2 - self.button_height / 2,
-                                             self.button_width, self.button_height), settings.BLUE, self.test_function,
+                                             self.button_width, self.button_height), settings.BLUE,
+                                             lambda: self.change_state("Introduction"),
                                              text="Start New Game", hover_color=settings.RED)
 
         self.quit_button = graphics.Button((settings.WIDTH / 2 - self.button_width / 2,
@@ -37,8 +38,8 @@ class Engine:
                                             settings.BLUE, self.stop_running,
                                             text="Quit", hover_color=settings.RED)
 
-    def test_function(self):
-        print("Testing")
+    def change_state(self, state):
+        self.current_state = state
 
     def stop_running(self):
         self.running = False
@@ -48,9 +49,6 @@ class Engine:
 
             # EVENT LOOP
             for event in pygame.event.get():
-
-                # self.main_menu_events(event)
-                self.introduction.introduction_events(event)
 
                 # Close Program on Quit
                 if event.type == pygame.QUIT:
@@ -79,11 +77,22 @@ class Engine:
 
             # DRAW EVERYTHING TO THE SCREEN FOR 1 FRAME
 
-            # Check The State Before Drawing
+            self.window.fill(settings.WHITE)
 
-            # Draw main menu
-            # self.main_menu_draw(self.window)
-            self.introduction.introduction_draw(self.window)
+            # Check The State Before Checking Events and Drawing
+
+            if self.current_state == "Main Menu":
+                self.main_menu_events(event)
+                self.main_menu_draw(self.window)
+            elif self.current_state == "Introduction":
+                self.introduction.introduction_events(event)
+                self.introduction.introduction_draw(self.window)
+
+                ##### FIX THIS TO RESET FLAG AFTER GOING BACK OR FORWARD!!!!!1
+                if self.introduction.back_flag:
+                    self.current_state = "Main Menu"
+                elif self.introduction.continue_flag:
+                    self.current_state = "Game Menu"
 
             # # Draw White Rectangle for Current City and Player Money
             # pygame.draw.rect(window, settings.SILVER, pygame.Rect(0, 0, settings.WIDTH, 100))
